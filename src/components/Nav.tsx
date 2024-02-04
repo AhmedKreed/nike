@@ -15,11 +15,33 @@ const Nav = () => {
           <Image src={headerLogo} alt={"Logo"} width={130} height={29}></Image>
         </Link>
         <ul
-          className={
+          className={`flex-1 flex justify-center items-center gap-16 max-lg:hidden`}
+        >
+          {navLinks.map((link) => (
+            <li key={link.label}>
+              <Link
+                href={link.href}
+                className={`font-montserrat leading-normal text-lg text-slate-gray`}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="flex gap-2 text-lg leading-normal font-medium font-montserrat max-lg:hidden wide:mr-24">
+          <Link href={"#"}>Sign in</Link>
+          <span>/</span>
+          <Link href={"#"}>Explore now</Link>
+        </div>
+        <div className="lg:hidden cursor-pointer" onClick={handleClick}>
+          <Image src={hamburger} alt={"Hamburger"} width={25} height={25} />
+        </div>
+        <ul
+          className={`lg:hidden ${
             toggleLinks
-              ? `flex-1 flex justify-center items-center gap-16 max-lg:hidden`
+              ? `hidden`
               : `absolute flex flex-col w-full top-[90px] z-10 left-1/2 -translate-x-1/2 padding-x bg-white shadow-xl sm:w-4/5 sm:px-5`
-          }
+          }`}
         >
           {navLinks.map((link) => (
             <li key={link.label} className={toggleLinks ? `` : `py-5 `}>
@@ -36,14 +58,6 @@ const Nav = () => {
             </li>
           ))}
         </ul>
-        <div className="flex gap-2 text-lg leading-normal font-medium font-montserrat max-lg:hidden wide:mr-24">
-          <Link href={"#"}>Sign in</Link>
-          <span>/</span>
-          <Link href={"#"}>Explore now</Link>
-        </div>
-        <div className="lg:hidden cursor-pointer" onClick={handleClick}>
-          <Image src={hamburger} alt={"Hamburger"} width={25} height={25} />
-        </div>
       </nav>
     </header>
   );
